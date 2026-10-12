@@ -4,6 +4,7 @@ local TweenService = game:GetService("TweenService")
 local HttpService = game:GetService("HttpService")
 local LocalPlayer = Players.LocalPlayer
 
+local DISCORD_INVITE = "https://discord.gg/8vafV9Ap5"
 local HUB_CATALOG = "https://raw.githubusercontent.com/WareSploit/Testy-Hub/main/catalog.json"
 local HUB_RAW = "https://raw.githubusercontent.com/WareSploit/Testy-Hub/main/"
 
@@ -476,17 +477,8 @@ do
 end
 
 versionLabel.Text = "Testy Hub v" .. tostring(catalog.version or "1.0.0")
-create("TextLabel", {
-	Size = UDim2.new(1, 0, 0, 22),
-	BackgroundTransparency = 1,
-	Text = "── Testy Hub v" .. tostring(catalog.version or "1.0.0") .. " ──",
-	TextColor3 = Colors.DIM,
-	TextSize = 13,
-	FontFace = FontRegular,
-	TextXAlignment = Enum.TextXAlignment.Left,
-	Parent = pageMain,
-})
 
+addLabel(pageMain, "── Testy Hub v" .. tostring(catalog.version or "1.0.0") .. " ──")
 addLabel(pageMain, "Search")
 
 local searchBox = create("TextBox", {
@@ -577,22 +569,21 @@ end
 addLabel(pageSettings, "── Socials ──")
 
 addButton(pageSettings, "Join Discord", function()
-	local url = catalog.discord or ""
 	if setclipboard then
-		setclipboard(url)
+		setclipboard(DISCORD_INVITE)
 		Notify("Discord", "Invite copied to clipboard", "success", 3)
 	end
-	if request and url ~= "" then
+	if request then
 		pcall(function()
-			request({ Url = url, Method = "GET" })
+			request({ Url = DISCORD_INVITE, Method = "GET" })
 		end)
 	end
 end)
 
-addButton(pageSettings, "GitHub Repository", function()
+addButton(pageSettings, "Copy Invite Again", function()
 	if setclipboard then
-		setclipboard("https://github.com/WareSploit/Testy-Hub")
-		Notify("GitHub", "Repo link copied", "success", 3)
+		setclipboard("8vafV9Ap5")
+		Notify("Discord", "Code copied: 8vafV9Ap5", "success", 3)
 	end
 end)
 
@@ -600,5 +591,6 @@ addLabel(pageSettings, "── Info ──")
 addLabel(pageSettings, "Version: " .. tostring(catalog.version or "1.0.0"))
 addLabel(pageSettings, "PlaceId: " .. tostring(currentPlace))
 addLabel(pageSettings, "Scripts loaded: " .. tostring(#scriptButtons))
+addLabel(pageSettings, "Discord: 8vafV9Ap5")
 
 Notify("Testy Hub", "v" .. tostring(catalog.version or "1.0.0") .. " | " .. tostring(#scriptButtons) .. " scripts", "success", 4)
