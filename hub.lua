@@ -6,7 +6,6 @@ local LocalPlayer = Players.LocalPlayer
 
 local DISCORD_INVITE = "https://discord.gg/8vafV9Ap5"
 local HUB_CATALOG = "https://raw.githubusercontent.com/WareSploit/Testy-Hub/main/catalog.json"
-local HUB_RAW = "https://raw.githubusercontent.com/WareSploit/Testy-Hub/main/"
 
 local function getGui()
 	local ok, cg = pcall(function() return game:GetService("CoreGui") end)
@@ -507,7 +506,10 @@ local scriptButtons = {}
 local function loadScript(entry)
 	Notify("Loading", entry.name, "info", 2)
 	task.spawn(function()
-		local url = HUB_RAW .. entry.url
+		local url = entry.url
+		if not url:match("^https?://") then
+			url = "https://raw.githubusercontent.com/WareSploit/Testy-Hub/main/" .. url
+		end
 		local ok, code = pcall(function() return game:HttpGet(url) end)
 		if not ok or not code or code == "" then
 			Notify("Error", "Download failed: " .. entry.name, "error", 4)
@@ -577,13 +579,6 @@ addButton(pageSettings, "Join Discord", function()
 		pcall(function()
 			request({ Url = DISCORD_INVITE, Method = "GET" })
 		end)
-	end
-end)
-
-addButton(pageSettings, "Copy Invite Again", function()
-	if setclipboard then
-		setclipboard("8vafV9Ap5")
-		Notify("Discord", "Code copied: 8vafV9Ap5", "success", 3)
 	end
 end)
 
