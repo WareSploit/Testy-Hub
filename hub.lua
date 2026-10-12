@@ -377,7 +377,10 @@ if tabs[1] then switchTab(tabs[1].Name:gsub("^Tab_", "")) end
 UserInputService.InputBegan:Connect(function(input, gp)
 	if gp then return end
 	if input.KeyCode == Enum.KeyCode.RightControl then
-		main.Visible = not main.Visible
+		opener.Visible = not opener.Visible
+		if not opener.Visible then
+			main.Visible = false
+		end
 	end
 	if input.KeyCode == Enum.KeyCode.Escape then
 		main.Visible = false
