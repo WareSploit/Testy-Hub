@@ -1,34 +1,15 @@
 {
   "version": "1.0.0",
-  "discord": "https://discord.gg/YOUR_INVITE",
+  "discord": "https://discord.gg/8vafV9Ap5",
   "games": [
     {
       "name": "Dueling Grounds",
       "placeId": 94217045453265,
       "scripts": [
         {
-          "name": "PC Auto Parry v2",
-          "url": "scripts/dueling.lua",
+          "name": "DG 1.4.0 — PC Auto Parry",
+          "url": "https://pastebin.com/raw/DTF3uE2M",
           "featured": true
-        }
-      ]
-    },
-    {
-      "name": "Universal",
-      "placeId": 0,
-      "scripts": [
-        {
-          "name": "Infinite Jump",
-          "url": "scripts/universal/infjump.lua",
-          "featured": true
-        },
-        {
-          "name": "WalkSpeed",
-          "url": "scripts/universal/walkspeed.lua"
-        },
-        {
-          "name": "Fullbright",
-          "url": "scripts/universal/fullbright.lua"
         }
       ]
     }
